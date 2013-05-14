@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @player.name
+%p
+  %b League:
+  = @player.league_id
+%p
+  %b Score:
+  = @player.score
+
+= link_to 'Edit', edit_player_path(@player)
+\|
+= link_to 'Back', players_path

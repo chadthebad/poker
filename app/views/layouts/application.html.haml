@@ -1,0 +1,19 @@
+!!!
+%head
+  %meta{:charset => "utf-8"}/
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  %title= content_for?(:title) ? yield(:title) : "Untitled"
+  = stylesheet_link_tag    "application"
+  = javascript_include_tag "vendor/custom.modernizr"
+  = csrf_meta_tags
+%body
+  .fixed
+    %nav.top-bar
+      %ul.title-area
+        %li.name
+          %h1 
+            = link_to 'Poker League Manager', home_index_path
+  .row
+    .large-12.columns
+      = yield
+  = javascript_include_tag "application"

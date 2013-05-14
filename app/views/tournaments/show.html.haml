@@ -1,0 +1,41 @@
+%p#notice= notice
+
+%p
+  %b
+    = @tournament.name
+  at 
+  %b 
+    = @tournament.location
+    \|
+  = @tournament.time.strftime('%A, %b %d at %I:%M%p')
+  %hr
+
+- if @tournament.time > Time.now
+  %table
+    %tr
+      %th Players
+
+    - @tournament.players.each do |players|
+      %tr
+        %td= players.name 
+ 
+- else
+  %table
+    %tr
+      %th Rank
+      %th 
+        out of
+        =@tournament.players.count
+        players.
+
+    - @tournament.players.each do |players|
+      %tr
+        %td 1
+        %td= players.name 
+
+= link_to 'Add player to tournament', new_player_path(:tournament_id => @tournament.id, :league_id => @tournament.league_id)
+
+%hr
+= link_to 'Edit', edit_tournament_path(@tournament)
+\|
+= link_to 'Back', tournaments_path

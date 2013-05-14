@@ -1,0 +1,20 @@
+%h1 Listing players
+
+%table
+  %tr
+    %th Name
+    %th Score
+    %th League
+    %th
+    %th
+
+  - @players.each do |player|
+    %tr
+      %td= player.name
+      %td= player.score
+      %td= player.league_id
+      %td= link_to 'Show', player
+
+%br
+
+= link_to 'New Player', new_player_path

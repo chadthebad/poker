@@ -1,0 +1,52 @@
+%p#notice= notice
+
+%h2
+  = @league.name
+
+.row
+  .large-3.columns
+    %table
+      %tr
+        %th Players
+        %th Score
+
+      - @league.players.each do |player|
+        %tr
+          %td= link_to player.name, player_path(player.id)
+          %td= player.score
+
+  .large-9.columns
+    %table
+      %tr
+        %th Upcoming Tournaments
+        %th Location
+        %th Time
+
+      - @league.tournaments.each do |tourny|
+        %tr
+          - if tourny.time > Time.now
+            %td= link_to tourny.name, tournament_path(tourny.id)
+            %td= tourny.location
+            %td= tourny.time
+
+    %table
+      %tr
+        %th Past Tournaments
+        %th Location
+        %th Time
+
+      - @league.tournaments.each do |tourny|
+        %tr
+          - if tourny.time < Time.now
+            %td= link_to tourny.name, tournament_path(tourny.id)
+            %td= tourny.location
+            %td= tourny.time
+
+%h3 
+  = link_to 'Add a tournament', new_tournament_path(:league_id => @league.id)
+  \|
+  = link_to 'Add a player', new_player_path(:league_id => @league.id)
+
+= link_to 'Edit', edit_league_path
+\|
+= link_to 'Back', leagues_path

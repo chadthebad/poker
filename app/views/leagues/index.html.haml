@@ -1,0 +1,13 @@
+%h2 Listing leagues
+
+%table
+  %tr
+    %th Name
+
+  - @leagues.each do |league|
+    %tr
+      %td= link_to league.name, league
+
+%br
+
+= link_to 'New League', new_league_path
