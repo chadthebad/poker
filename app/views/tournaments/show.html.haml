@@ -18,6 +18,9 @@
     - @tournament.players.each do |players|
       %tr
         %td= players.name 
+
+  / FIXME create link to add players to the tournament
+  Add player to tournament
  
 - else
   %table
@@ -32,8 +35,6 @@
       %tr
         %td 1
         %td= players.name 
-
-= link_to 'Add player to tournament', new_player_path(:tournament_id => @tournament.id, :league_id => @tournament.league_id)
 
 %hr
 = link_to 'Edit', edit_tournament_path(@tournament)
