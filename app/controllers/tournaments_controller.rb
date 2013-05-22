@@ -19,6 +19,7 @@ class TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
+    @players = Player.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -28,6 +29,7 @@ class TournamentsController < ApplicationController
 
   def edit
     @tournament = Tournament.find(params[:id])
+    @players = Player.find(params[:id])
   end
 
   def create
@@ -45,7 +47,9 @@ class TournamentsController < ApplicationController
   end
 
   def update
+    params[:tournament][:player_ids] ||= []
     @tournament = Tournament.find(params[:id])
+    @players = Player.find(params[:id])
 
     respond_to do |format|
       if @tournament.update_attributes(tournament_params)

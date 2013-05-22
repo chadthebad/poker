@@ -14,27 +14,29 @@
   %table
     %tr
       %th Players
+    FIXME display table of players registered for tournament
 
-    - @tournament.players.each do |players|
-      %tr
-        %td= players.name 
+    / - @tournament.players.each do |players|
+    /   %tr
+    /     %td= players.name 
 
   / FIXME create link to add players to the tournament
-  Add player to tournament
+  = link_to 'Add player to tournament', edit_tournament_path(@tournament)
  
 - else
   %table
     %tr
       %th Rank
-      %th 
-        out of
-        =@tournament.players.count
-        players.
+    FIXME display table of results from tournament
+/       %th 
+/         out of
+/         =@tournament.players.count
+/         players.
 
-    - @tournament.players.each do |players|
-      %tr
-        %td 1
-        %td= players.name 
+/     - @tournament.players.each do |players|
+/       %tr
+/         %td 1
+/         %td= players.name 
 
 %hr
 = link_to 'Edit', edit_tournament_path(@tournament)

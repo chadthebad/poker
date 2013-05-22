@@ -6,16 +6,39 @@
         - @tournament.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.hidden_field :league_id, :value => params[:league_id]
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :location
-    = f.text_field :location
-  .field
-    = f.label :time
-    = f.datetime_select :time
+  .row
+    - if params[:action] == "new"
+      .large-12.columns
+        %h3 Tourny Info
+        .field
+          = f.hidden_field :league_id, :value => params[:league_id]
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :location
+          = f.text_field :location
+        .field
+          = f.label :time
+          = f.datetime_select :time
+    - else
+      .large-6.columns
+        %h3 Tourny Info
+        .field
+          = f.hidden_field :league_id, :value => params[:league_id]
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :location
+          = f.text_field :location
+        .field
+          = f.label :time
+          = f.datetime_select :time
+    - if params[:action] == 'edit'
+      .large-6.columns
+        %h3 Players
+        = check_box_tag "tournament[player_ids][]", @player.id, @tournament.players.include?(player)
+
   .actions
     = f.submit 'Save'
